@@ -178,6 +178,10 @@ class PageService
     public function processFilter(
         array &$data, array $banUidArray, $spacer, AbstractMenuContentObject $obj
     ) {
+        // ensure hidden elements are returned as true
+        if (!is_array($data)) {
+            $data = [];
+        }
         return
         Record::isEnabled('pages', $data) &&
         Record::isSettingEnabled('pages', 'tx_contexts_nav', $data);
